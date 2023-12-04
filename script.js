@@ -61,16 +61,22 @@ class App {
 
     #map;
     #mapEvent;
+    #mapZoomLevel = 13;
     #workouts = [];
 
     constructor() {
+        // Getting user's location
         this._getPosition();
 
+        // Get Data from local storage
+        this._getLocalStorage();
+
+        // Attaching Event Handlers
         const form = document.querySelector('.workoutInput');
         form.addEventListener('submit', this._newWorkout.bind(this));
 
         inputType.addEventListener('change', this._toggleElevationField.bind(this));
-        cointainerWorkouts.addEventListener('click', this._movePopup);
+        cointainerWorkouts.addEventListener('click', this._movePopup.bind(this));
     }
 
 
@@ -92,7 +98,7 @@ class App {
 
         const cords = [latitude, longitude];
 
-        this.#map = L.map('map').setView(cords, 13);
+        this.#map = L.map('map').setView(cords, this.#mapZoomLevel);
 
         L.tileLayer('https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -100,6 +106,10 @@ class App {
 
         // Clicks on map
         this.#map.on('click', this._showForm.bind(this));
+
+        this.#workouts.forEach(work => {
+            this._renderWorkoutMarker(work);
+        });
     }
 
 
@@ -147,7 +157,6 @@ class App {
             }
 
             activity = new Running([lat, lng], distance, duration, cadence);
-            this.#workouts.push(activity);
         }
 
         // If activity is cycling, create cycling object
@@ -171,7 +180,6 @@ class App {
 
         // Add new object in workout array
         this.#workouts.push(activity);
-        console.log(activity);
 
         // Render workout on map as marker
         this._renderWorkoutMarker(activity);
@@ -181,6 +189,9 @@ class App {
 
         // hide input form and clearing input fields
         this._hideMap();
+
+        // Set local storage to all workouts
+        this._setLocalStorage();
     }
 
     _renderWorkoutMarker(activity) {
@@ -275,8 +286,42 @@ class App {
     }
 
     _movePopup(e) {
-        const workoutElement = e.target.closest('wo');
-        console.log(workoutElement);
+        if (!this.#map)
+            return;
+
+        const workoutElement = e.target.closest('.wo');
+
+        if (!workoutElement)
+            return;
+
+        const workout = this.#workouts.find(work => work.id === workoutElement.dataset.id);
+        this.#map.setView(workout.cords, this.#mapZoomLevel, {
+            animate: true,
+            pan: {
+                duration: 1,
+            },
+        });
+    }
+
+    _setLocalStorage() {
+        localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    }
+
+    _getLocalStorage() {    
+        const data = JSON.parse(localStorage.getItem('workouts'));
+        if (!data)
+            return;
+
+        this.#workouts = data;
+
+        this.#workouts.forEach(work => {
+            this._renderWorkout(work);
+        });
+    }
+
+    reset() {
+        localStorage.removeItem('workouts');
+        location.reload();
     }
 }
 
