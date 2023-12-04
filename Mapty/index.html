@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+    <link href="style.css" rel="StyleSheet">
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""
+    />
+    <script
+        defer
+        src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""
+    ></script>
+
+    <script defer src="script.js"></script>
+
+    <title>Mapty Excercise</title>
+</head>
+<body>
+    <div class="console">
+        <img class = "logo" src="logo.png" alt="Mapty">
+        <div class="workout">
+            <div class="workoutParent hidden">
+                <form class="workoutInput">
+                    <div class="formCell">
+                        <label class="subHeading">Type</label>
+                        <select class="form_input inpType">
+                            <option value="running">Running</option>
+                            <option value="cycling">Cycling</option>
+                        </select>
+                    </div>
+
+                    <div class="formCell">
+                        <label class="subHeading">Distance</label>
+                        <input class="form_input inpdistance" placeholder="km">
+                    </div>
+
+                    <div class="formCell">
+                        <label class="subHeading">Duration</label>
+                        <input class="form_input inpduration" placeholder="min">
+                    </div>
+
+                    <div class="formCell">
+                        <label class="subHeading">Cadence</label>
+                        <input class="form_input inpcadence" placeholder="step/min">
+                    </div>
+
+                    <div class="formCell hide">
+                        <label class="subHeading">Elev Gain</label>
+                        <input class="form_input inpelev" placeholder="meters">
+                    </div>
+                    <button style="display: none;"> OK </button>
+                </form>
+            </div>
+
+            <!-- <div class="running">
+                <div class="subHeading">
+                    Running on <span class="date">April 14</span>
+                </div>
+                <div class="info">
+                    <div class="dist">
+                        🏃‍♂️
+                        <span class="value">5.2</span>
+                        <span class="unit">KM</span>
+                    </div>
+                    <div class="time">
+                        ⏱
+                        <span class="value">24</span>
+                        <span class="unit">MIN</span>
+                    </div>
+                    <div class="energy">
+                        ⚡️
+                        <span class="value">4.6</span>
+                        <span class="unit">MIN/KM</span>
+                    </div>
+                    <div class="spm">
+                        🦶🏼
+                        <span class="value">178</span>
+                        <span class="unit">SPM</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cycling">
+                <div class="subHeading">
+                    Cycling on <span class="date">April 5</span>
+                </div>
+                <div class="info">
+                    <div class="dist">
+                        🚴‍♀️
+                        <span class="value">27</span>
+                        <span class="unit">KM</span>
+                    </div>
+                    <div class="time">
+                        ⏱
+                        <span class="value">95</span>
+                        <span class="unit">MIN</span>
+                    </div>
+                    <div class="energy">
+                        ⚡️
+                        <span class="value">16</span>
+                        <span class="unit">KM/H</span>
+                    </div>
+                    <div class="spm">
+                        <span class="icon"> ⛰ </span>
+                        <span class="value">223</span>
+                        <span class="unit">M</span>
+                    </div>
+
+                </div>
+            </div> -->
+        </div>
+        <div class="copyright">
+            Only for learning and portfolio purposes. 
+            No claim of accuracy and scale of map is guranteed.
+        </div>
+    </div>
+    <div id="map"></div>
+</body>
+</html>
