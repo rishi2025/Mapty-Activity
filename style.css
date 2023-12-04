@@ -1,0 +1,191 @@
+:root {
+    --excercise--1: #ffb545;
+    --excercise--2: #00c46a;
+
+    --dark--1: #2d3439;
+    --dark--2: #42484d;
+    --light--1: #aaa;
+    --light--2: #ececec;
+    --light--3: rgb(214, 222, 224);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+head {
+    display: none;
+}
+
+body {
+    height: 100vh;
+    padding: 2.5rem;
+    display: flex;
+    background-color: #fff;
+    font-family: 'Manrope', sans-serif;
+    overscroll-behavior-y: none;
+    line-height: 1.6rem;
+}
+
+.console {
+    background-color: var(--dark--1);
+    height: 100%;
+    width: 35%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.copyright {
+    color: var(--light--1);
+    font-size: 1.4rem;
+    display: flex;
+    text-align: center;
+    width: 80%;
+}
+
+.cycling {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    height: 9rem;
+    background-color: var(--dark--2);
+    border-radius: 5px;
+    width: 100%;
+    padding: 2rem;
+    border-left: 5px solid var(--excercise--1);
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.formCell {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.form_input {
+    height: 2.5rem;
+    width: 8rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(--light--3);
+}
+
+.hide {
+    display: none;
+}
+
+.info {
+    color: var(--light--3);
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.workoutInput {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    row-gap: 1rem;
+    height: 9rem;
+    background-color: var(--dark--2);
+    border-radius: 5px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.logo {
+    height: 5.5rem;
+    margin: 1rem;
+}
+
+#map {
+    background-color: var(--light--1);
+    height: 100%;
+    width: 65%;
+}
+
+.running {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    height: 9rem;
+    background-color: var(--dark--2);
+    border-radius: 5px;
+    width: 100%;
+    padding: 2rem;
+    border-left: 5px solid var(--excercise--2);
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.subHeading {
+    color: var(--light--2);
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+.unit {
+    font-size: 1rem;
+    color: var(--light--1);
+    font-weight: 600;
+}
+
+.workout {
+    gap: 2rem;
+    height: 75%;
+    width: 90%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.workout::-webkit-scrollbar {
+    width: 0;
+}
+
+.workoutParent {
+    transition: all 0.5s;
+}
+
+.workoutParent.hidden {
+    transform: translateY(-30rem);
+    height: 0;
+    padding: 0 2.25rem;
+    margin-bottom: 0;
+    opacity: 0;
+}
+
+/* Popup width is defined in JS using options */
+.leaflet-popup .leaflet-popup-content-wrapper {
+    background-color: var(--dark--1);
+    color: var(--light--2);
+    border-radius: 5px;
+    padding-right: 0.6rem;
+}
+
+.leaflet-popup .leaflet-popup-content {
+    font-size: 1.5rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+    background-color: var(--dark--1);
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+    border-left: 5px solid var(--excercise--2);
+}
+
+.cycling-popup .leaflet-popup-content-wrapper {
+    border-left: 5px solid var(--excercise--1);
+}
